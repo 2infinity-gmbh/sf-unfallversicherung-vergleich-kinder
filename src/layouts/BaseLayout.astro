@@ -1,0 +1,98 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonicalURL?: string;
+}
+
+const { title, description, canonicalURL } = Astro.props;
+const fullTitle = `${title} | Unfallversicherung Vergleich Kinder`;
+const currentURL = canonicalURL || new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{fullTitle}</title>
+    <meta name="title" content={fullTitle} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={currentURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={currentURL} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="de_DE" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={currentURL} />
+    <meta property="twitter:title" content={fullTitle} />
+    <meta property="twitter:description" content={description} />
+
+    <!-- Analytics -->
+    <script defer data-domain="unfallversicherung-vergleich-kinder.de" src="https://plausible.io/js/script.js"></script>
+  </head>
+  <body>
+    <header class="bg-white shadow-sm border-b border-gray-200">
+      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div class="flex justify-between items-center">
+          <a href="/" class="text-2xl font-bold text-primary-700 no-underline hover:text-primary-800">
+            Unfallversicherung Vergleich Kinder
+          </a>
+          <div class="hidden md:flex space-x-6">
+            <a href="/" class="text-gray-700 hover:text-primary-600 no-underline">Startseite</a>
+            <a href="/ratgeber" class="text-gray-700 hover:text-primary-600 no-underline">Ratgeber</a>
+            <a href="/vergleich" class="text-gray-700 hover:text-primary-600 no-underline">Vergleich</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="min-h-screen">
+      <slot />
+    </main>
+
+    <footer class="bg-gray-50 border-t border-gray-200 mt-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-lg font-semibold mb-3 text-gray-900">Unfallversicherung Kinder</h3>
+            <p class="text-gray-600 text-sm">
+              Umfassende Informationen und Vergleiche für die beste Unfallversicherung für Ihr Kind.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-3 text-gray-900">Navigation</h3>
+            <ul class="space-y-2 text-sm list-none ml-0">
+              <li class="mb-1"><a href="/" class="text-gray-600 hover:text-primary-600">Startseite</a></li>
+              <li class="mb-1"><a href="/ratgeber" class="text-gray-600 hover:text-primary-600">Ratgeber</a></li>
+              <li class="mb-1"><a href="/vergleich" class="text-gray-600 hover:text-primary-600">Vergleich</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-3 text-gray-900">Rechtliches</h3>
+            <ul class="space-y-2 text-sm list-none ml-0">
+              <li class="mb-1"><a href="/impressum" class="text-gray-600 hover:text-primary-600">Impressum</a></li>
+              <li class="mb-1"><a href="/datenschutz" class="text-gray-600 hover:text-primary-600">Datenschutz</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-8 pt-8 border-t border-gray-200 text-center text-sm text-gray-600">
+          <p>&copy; {new Date().getFullYear()} Unfallversicherung Vergleich Kinder. Alle Rechte vorbehalten.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

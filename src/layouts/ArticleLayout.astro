@@ -1,0 +1,81 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  publishDate?: string;
+  author?: string;
+}
+
+const { title, description, publishDate, author } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Ad Space - Header -->
+    <div class="mb-8 bg-gray-100 border border-gray-300 rounded p-4 text-center text-sm text-gray-500">
+      <span>Werbung</span>
+    </div>
+
+    <header class="mb-8">
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{title}</h1>
+      {publishDate && (
+        <div class="flex items-center text-gray-600 text-sm">
+          <time datetime={publishDate}>
+            {new Date(publishDate).toLocaleDateString('de-DE', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </time>
+          {author && <span class="ml-4">von {author}</span>}
+        </div>
+      )}
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div class="lg:col-span-2 prose prose-lg max-w-none">
+        <slot />
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-1">
+        <!-- Ad Space - Sidebar -->
+        <div class="sticky top-4 space-y-6">
+          <div class="bg-gray-100 border border-gray-300 rounded p-4 text-center text-sm text-gray-500">
+            <span>Werbung</span>
+            <div class="h-64"></div>
+          </div>
+
+          <div class="bg-primary-50 border border-primary-200 rounded-lg p-6">
+            <h3 class="text-lg font-semibold mb-3 text-gray-900">Schnell-Vergleich</h3>
+            <p class="text-sm text-gray-700 mb-4">
+              Finden Sie die beste Unfallversicherung für Ihr Kind in wenigen Minuten.
+            </p>
+            <a href="/vergleich" class="block w-full bg-primary-600 text-white text-center py-2 px-4 rounded hover:bg-primary-700 no-underline font-medium">
+              Jetzt vergleichen
+            </a>
+          </div>
+
+          <div class="bg-white border border-gray-200 rounded-lg p-6">
+            <h3 class="text-lg font-semibold mb-3 text-gray-900">Weitere Artikel</h3>
+            <ul class="space-y-3 text-sm list-none ml-0">
+              <li class="mb-2">
+                <a href="/artikel/unfallversicherung-kinder-vergleich-ratgeber" class="text-primary-600 hover:text-primary-700">
+                  Umfassender Vergleich und Ratgeber
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Ad Space - In-Content -->
+    <div class="mt-12 bg-gray-100 border border-gray-300 rounded p-4 text-center text-sm text-gray-500">
+      <span>Werbung</span>
+      <div class="h-24"></div>
+    </div>
+  </article>
+</BaseLayout>
