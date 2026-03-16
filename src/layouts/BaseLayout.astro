@@ -38,7 +38,34 @@ const currentURL = canonicalURL || new URL(Astro.url.pathname, Astro.site).href;
     <meta property="twitter:description" content={description} />
 
     <!-- Analytics -->
-    <script defer data-domain="unfallversicherung-vergleich-kinder.de" src="https://plausible.io/js/script.js"></script>
+    <script is:inline defer data-domain="unfallversicherung-vergleich-kinder.de" src="https://plausible.io/js/script.js"></script>
+
+    <!-- Schema.org Structured Data -->
+    <script is:inline type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://unfallversicherung-vergleich-kinder.de/#website",
+            "url": "https://unfallversicherung-vergleich-kinder.de/",
+            "name": "Unfallversicherung Vergleich Kinder",
+            "description": "Umfassender Vergleich und Ratgeber für Kinderunfallversicherungen",
+            "inLanguage": "de-DE"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://unfallversicherung-vergleich-kinder.de/#organization",
+            "name": "Unfallversicherung Vergleich Kinder",
+            "url": "https://unfallversicherung-vergleich-kinder.de/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://unfallversicherung-vergleich-kinder.de/logo.png"
+            }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <header class="bg-white shadow-sm border-b border-gray-200">
